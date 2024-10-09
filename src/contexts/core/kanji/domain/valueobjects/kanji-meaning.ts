@@ -1,6 +1,7 @@
 class KanjiMeaning {
   constructor(
-    private readonly value: string
+    private readonly value: string,
+    private readonly language: string
   ) { }
 }
 
