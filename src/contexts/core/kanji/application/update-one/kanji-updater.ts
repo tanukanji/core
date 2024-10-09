@@ -1,5 +1,8 @@
+import { DomainEventId } from "../../../../shared/events/domain/domain-event-id";
+import { DomainEventOccurredOn } from "../../../../shared/events/domain/domain-event-occurred-on";
 import type { EventBus } from "../../../../shared/events/domain/event-bus";
 import { Kanji } from "../../domain/entities/kanji";
+import { KanjiUpdatedEvent } from "../../domain/events/kanji-updated-event";
 import type { KanjiRepository } from "../../domain/repositories/kanji-repository";
 import type { KanjiIdeogram } from "../../domain/valueobjects/kanji-ideogram";
 import type { KanjiKunyomiReading } from "../../domain/valueobjects/kanji-kunyomi-reading";
@@ -24,7 +27,14 @@ class KanjiUpdater {
     ): Promise<void> {
         const newKanji = new Kanji(ideogram, onyomiReadings, kunyomiReadings, meanings, strokes, radicals);
         const oldKanji = await this.kanjiRepository.findOneByIdeogram(ideogram);
-        await this.kanjiRepository.updateOne(newKanji);
+        if (oldKanji !== newKanji) {
+            await this.kanjiRepository.updateOne(newKanji);
+            const event = new KanjiUpdatedEvent(DomainEventId.random(), DomainEventOccurredOn.now(), ideogram, oldKanji.onyomiReadings, 
+                newKanji.onyomiReadings, oldKanji.kunyomiReadings, newKanji.kunyomiReadings, oldKanji.meanings, newKanji.meanings, 
+                oldKanji.strokes, newKanji.strokes, oldKanji.radicals, newKanji.radicals);
+            this.eventBus.publish(event);
+        }
+
     }
 }
 
