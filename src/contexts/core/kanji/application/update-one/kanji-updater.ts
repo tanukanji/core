@@ -8,14 +8,13 @@ import type { KanjiOnyomiReading } from "../../domain/valueobjects/kanji-onyomi-
 import type { KanjiRadical } from "../../domain/valueobjects/kanji-radical";
 import type { KanjiStrokesNumber } from "../../domain/valueobjects/kanji-strokes-number";
 
-class KanjiCreator {
-
+class KanjiUpdater {
     constructor(
-        private readonly kanjiRepository: KanjiRepository,
-        private readonly eventBus: EventBus,
+        private kanjiRepository: KanjiRepository,
+        private eventBus: EventBus,
     ) {}
     
-    async createOne(
+    async updateOne(
         ideogram: KanjiIdeogram,
         onyomiReadings: KanjiOnyomiReading[],
         kunyomiReadings: KanjiKunyomiReading[],
@@ -23,11 +22,10 @@ class KanjiCreator {
         strokes: KanjiStrokesNumber,
         radicals: KanjiRadical[],
     ): Promise<void> {
-        const [kanji, event] = Kanji.create(ideogram, onyomiReadings, kunyomiReadings, meanings, strokes, radicals);
-        await this.kanjiRepository.createOne(kanji);
-        this.eventBus.publish(event);
+        const newKanji = new Kanji(ideogram, onyomiReadings, kunyomiReadings, meanings, strokes, radicals);
+        const oldKanji = await this.kanjiRepository.findOneByIdeogram(ideogram);
+        await this.kanjiRepository.updateOne(newKanji);
     }
-
 }
 
-export { KanjiCreator };
+export { KanjiUpdater };
