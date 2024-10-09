@@ -7,12 +7,12 @@ import type { KanjiStrokesNumber } from "../valueobjects/kanji-strokes-number";
 
 class Kanji {
     constructor(
-        public readonly ideogram: KanjiIdeogram,
-        public readonly onyomiReadings: KanjiOnyomiReading[],
-        public readonly kunyomiReadings: KanjiKunyomiReading[],
-        public readonly meanings: KanjiMeaning[],
-        public readonly strokes: KanjiStrokesNumber,
-        public readonly radicals: KanjiRadical[],
+        public ideogram: KanjiIdeogram,
+        public onyomiReadings: KanjiOnyomiReading[],
+        public kunyomiReadings: KanjiKunyomiReading[],
+        public meanings: KanjiMeaning[],
+        public strokes: KanjiStrokesNumber,
+        public radicals: KanjiRadical[],
     ) {}
 }
 
