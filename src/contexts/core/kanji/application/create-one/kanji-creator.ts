@@ -1,3 +1,4 @@
+import type { EventBus } from "../../../../shared/events/domain/event-bus";
 import { Kanji } from "../../domain/entities/kanji";
 import type { KanjiRepository } from "../../domain/repositories/kanji-repository";
 import type { KanjiIdeogram } from "../../domain/valueobjects/kanji-ideogram";
@@ -9,7 +10,10 @@ import type { KanjiStrokesNumber } from "../../domain/valueobjects/kanji-strokes
 
 class KanjiCreator {
 
-    constructor(private kanjiRepository: KanjiRepository) {}
+    constructor(
+        private readonly kanjiRepository: KanjiRepository,
+        private readonly eventBus: EventBus,
+    ) {}
     
     async createOne(
         ideogram: KanjiIdeogram,
@@ -20,7 +24,8 @@ class KanjiCreator {
         radicals: KanjiRadical[],
     ): Promise<void> {
         const [kanji, event] = Kanji.create(ideogram, onyomiReadings, kunyomiReadings, meanings, strokes, radicals);
-        return this.kanjiRepository.createOne(kanji);
+        await this.kanjiRepository.createOne(kanji);
+        this.eventBus.publish(event);
     }
 
 }
