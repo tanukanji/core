@@ -7,10 +7,12 @@ abstract class KanjiRepository {
 
     abstract findMany(): Promise<Kanji[]>;
 
-    abstract create_one(kanji: Kanji): Promise<void>;
+    abstract createOne(kanji: Kanji): Promise<void>;
 
-    abstract update_one(kanji: Kanji): Promise<void>;
+    abstract updateOne(kanji: Kanji): Promise<void>;
 
-    abstract delete_one(kanji: Kanji): Promise<void>;
-    
+    abstract deleteOne(kanji: Kanji): Promise<void>;
+
 }
+
+export { KanjiRepository };

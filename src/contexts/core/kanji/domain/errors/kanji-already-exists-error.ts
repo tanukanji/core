@@ -5,3 +5,5 @@ class KanjiAlreadyExistsError extends DomainError {
         super(message);
     }
 }
+
+export { KanjiAlreadyExistsError };
