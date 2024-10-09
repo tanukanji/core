@@ -4,6 +4,10 @@ class KanjiStrokesNumber {
     private readonly value: number
   ) {}
 
+  get val () {
+        return this.value;
+    }
+
 }
 
 export { KanjiStrokesNumber };

@@ -1,7 +1,11 @@
 class KanjiRadical {
     constructor(
-        private readonly ideogram: string,
+        private readonly value: string,
     ) {}
+
+    get val () {
+        return this.value;
+    }
 }
 
 export { KanjiRadical };
