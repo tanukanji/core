@@ -27,7 +27,7 @@ class KanjiUpdater {
     ): Promise<void> {
         const newKanji = new Kanji(ideogram, onyomiReadings, kunyomiReadings, meanings, strokes, radicals);
         const oldKanji = await this.kanjiRepository.findOneByIdeogram(ideogram);
-        if (oldKanji !== newKanji) {
+        if (!oldKanji.equals(newKanji)) {
             await this.kanjiRepository.updateOne(newKanji);
             const event = new KanjiUpdatedEvent(DomainEventId.random(), DomainEventOccurredOn.now(), ideogram, oldKanji.onyomiReadings, 
                 newKanji.onyomiReadings, oldKanji.kunyomiReadings, newKanji.kunyomiReadings, oldKanji.meanings, newKanji.meanings, 

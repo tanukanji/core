@@ -1,3 +1,4 @@
+import { deepEquals } from "bun";
 import type { DomainEvent } from "../../../../shared/events/domain/domain-event";
 import { DomainEventId } from "../../../../shared/events/domain/domain-event-id";
 import { DomainEventOccurredOn } from "../../../../shared/events/domain/domain-event-occurred-on";
@@ -31,6 +32,10 @@ class Kanji {
         const event = new KanjiCreatedEvent(DomainEventId.random(), DomainEventOccurredOn.now(), ideogram, onyomiReadings, 
             kunyomiReadings, meanings, strokes, radicals);
         return [kanji, event];
+    }
+
+    equals(kanji: Kanji) {
+        return deepEquals(this, kanji);
     }
 }
 

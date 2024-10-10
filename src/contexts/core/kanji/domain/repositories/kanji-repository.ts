@@ -11,7 +11,7 @@ abstract class KanjiRepository {
 
     abstract updateOne(kanji: Kanji): Promise<void>;
 
-    abstract deleteOne(kanji: Kanji): Promise<void>;
+    abstract deleteOne(kanji: KanjiIdeogram): Promise<void>;
 
 }
 
