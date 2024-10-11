@@ -1,8 +1,8 @@
 import type { DomainError } from "../../errors/domain/DomainError";
 
-class QueryHandlerResponse<T> {
+class QueryHandlerResponse {
   constructor(
-    public readonly data: T,
+    public readonly data: any,
     public readonly errors: DomainError[],
 ) {}
 }
