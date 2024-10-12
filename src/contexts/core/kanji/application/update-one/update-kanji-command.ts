@@ -5,12 +5,12 @@ class UpdateKanjiCommand implements Command {
         static readonly TYPE = "tanukanji.core.kanji.update:1.0.0";
     
         constructor(
-            public readonly kanji: string,
+            public readonly ideogram: string,
             public readonly onyomi: string,
             public readonly kunyomi: string,
-            public readonly meaning: string,
+            public readonly meanings: string[],
             public readonly strokeCount: number,
-            public readonly examples: string[]
+            public readonly radicals: string,
         ) {}
     
         get type(): string {

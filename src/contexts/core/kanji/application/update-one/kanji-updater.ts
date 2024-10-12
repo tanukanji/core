@@ -17,7 +17,7 @@ class KanjiUpdater {
         private eventBus: EventBus,
     ) {}
     
-    async updateOne(
+    async run(
         ideogram: KanjiIdeogram,
         onyomiReadings: KanjiOnyomiReading[],
         kunyomiReadings: KanjiKunyomiReading[],
