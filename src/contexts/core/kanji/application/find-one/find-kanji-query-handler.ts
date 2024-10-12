@@ -4,9 +4,7 @@ import type { FindKanjiQuery } from "./find-kanji-query";
 import type { KanjiFinder } from "./kanji-finder";
 
 class FindKanjiQueryHandler {
-  constructor(
-    private readonly finder: KanjiFinder
-) {}
+  constructor(private readonly finder: KanjiFinder) {}
 
   async handle(query: FindKanjiQuery): Promise<QueryHandlerResponse> {
     const ideogram = new KanjiIdeogram(query.ideogram);
@@ -14,3 +12,5 @@ class FindKanjiQueryHandler {
     return new QueryHandlerResponse([kanji], []);
   }
 }
+
+export { FindKanjiQueryHandler };
