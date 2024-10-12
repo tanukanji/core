@@ -1,4 +1,3 @@
-import type { KanjiRepository } from "../../domain/repositories/kanji-repository";
 import { KanjiIdeogram } from "../../domain/valueobjects/kanji-ideogram";
 import { KanjiKunyomiReading } from "../../domain/valueobjects/kanji-kunyomi-reading";
 import { KanjiMeaning } from "../../domain/valueobjects/kanji-meaning";
