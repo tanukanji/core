@@ -1,16 +1,22 @@
+import type { CommandHandler } from "../../../../shared/cqrs/domain/command-handler";
+import { CommandHandlerResponse } from "../../../../shared/cqrs/domain/command-handler-responde";
 import { KanjiIdeogram } from "../../domain/valueobjects/kanji-ideogram";
-import type { DeleteKanjiCommand } from "./delete-kanji-command";
+import { DeleteKanjiCommand } from "./delete-kanji-command";
 import type { KanjiDeleter } from "./kanji-deleter";
 
-class DeleteKanjiCommandHandler {
-    constructor(
-        private deleter: KanjiDeleter
-    ) {}
+class DeleteKanjiCommandHandler implements CommandHandler {
+  constructor(private deleter: KanjiDeleter) {}
 
-    async handle(command: DeleteKanjiCommand): Promise<void> {
-        const ideogram = new KanjiIdeogram(command.ideogram);
-        return this.deleter.run(ideogram);
-    }
+  get type(): string {
+    return DeleteKanjiCommand.TYPE;
+  }
+
+  async handle(command: DeleteKanjiCommand): Promise<CommandHandlerResponse> {
+    const ideogram = new KanjiIdeogram(command.ideogram);
+    await this.deleter.run(ideogram);
+
+    return new CommandHandlerResponse([]);
+  }
 }
 
 export { DeleteKanjiCommandHandler };
