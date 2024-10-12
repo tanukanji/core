@@ -15,7 +15,7 @@ class KanjiCreator {
         private readonly eventBus: EventBus,
     ) {}
     
-    async createOne(
+    async run(
         ideogram: KanjiIdeogram,
         onyomiReadings: KanjiOnyomiReading[],
         kunyomiReadings: KanjiKunyomiReading[],
