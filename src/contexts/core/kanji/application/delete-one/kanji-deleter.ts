@@ -11,7 +11,7 @@ class KanjiDeleter {
     private readonly eventBus: EventBus,
 ) {}
 
-  async deleteOne(kanjiId: KanjiIdeogram): Promise<void> {
+  async run(kanjiId: KanjiIdeogram): Promise<void> {
     const kanji = await this.kanjiRepository.findOneByIdeogram(kanjiId);
     await this.kanjiRepository.deleteOne(kanjiId);
     const event = new KanjiDeletedEvent(DomainEventId.random(), DomainEventOccurredOn.now(), kanjiId, kanji.onyomiReadings, 
