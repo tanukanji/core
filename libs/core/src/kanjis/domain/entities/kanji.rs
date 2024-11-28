@@ -1,3 +1,5 @@
+use super::kanji_ideogram::KanjiIdeogram;
+
 
 pub struct Kanji {
     pub ideogram: KanjiIdeogram,

@@ -1,1 +1,1 @@
-pub mod cves;
+pub mod kanjis;
