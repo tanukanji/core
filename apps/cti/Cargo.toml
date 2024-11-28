@@ -1,0 +1,17 @@
+[package]
+name = "core_http_api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web = "4"
+actix-cors = "0.7.0"
+dotenv = "0.15.0"
+tracing = "0.1"
+tracing-subscriber = "0.2"
+tracing-futures = "0.2"
+serde = "1.0.208"
+events = { path = "../../libs/shared/events" }
+
+[dev-dependencies]
+actix-rt = "2"
