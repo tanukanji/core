@@ -1,0 +1,1 @@
+pub mod find_kanji_query;
