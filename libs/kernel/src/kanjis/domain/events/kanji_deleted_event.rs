@@ -39,7 +39,7 @@ impl KanjiDeletedEvent {
         nanori_readings: Vec<KanjiNanoriReading>,
         meanings: Vec<KanjiMeaning>, 
         strokes: KanjiStrokesNumber, 
-        radicals: Vec<KanjiRadical>
+        radicals: Vec<KanjiRadical>,
     )  -> Arc<Self> {
         std::sync::Arc::new(Self::new(ideogram, kunyomi_readings, onyomi_readings, nanori_readings, meanings, strokes, radicals))
     }
