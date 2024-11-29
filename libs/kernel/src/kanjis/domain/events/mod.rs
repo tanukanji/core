@@ -1,0 +1,1 @@
+pub mod kanji_created_event;
