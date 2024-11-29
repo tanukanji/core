@@ -1,3 +1,5 @@
+use std::sync::Arc;
+
 use events::domain::domain_event::DomainEvent;
 
 use crate::kanjis::domain::entities::{kanji_ideogram::KanjiIdeogram, kanji_kunyomi_reading::KanjiKunyomiReading, kanji_meaning::KanjiMeaning, kanji_nanori_reading::KanjiNanoriReading, kanji_onyomi_reading::KanjiOnyomiReading, kanji_radical::KanjiRadical, kanji_strokes_number::KanjiStrokesNumber};
