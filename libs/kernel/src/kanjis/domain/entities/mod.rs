@@ -5,3 +5,4 @@ pub mod kanji_onyomi_reading;
 pub mod kanji_nanori_reading;
 pub mod kanji_meaning;
 pub mod kanji_strokes_number;
+pub mod kanji_radical;
