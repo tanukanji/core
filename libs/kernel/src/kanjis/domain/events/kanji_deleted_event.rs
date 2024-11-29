@@ -5,7 +5,7 @@ use events::domain::domain_event::DomainEvent;
 use crate::kanjis::domain::entities::{kanji_ideogram::KanjiIdeogram, kanji_kunyomi_reading::KanjiKunyomiReading, kanji_meaning::KanjiMeaning, kanji_nanori_reading::KanjiNanoriReading, kanji_onyomi_reading::KanjiOnyomiReading, kanji_radical::KanjiRadical, kanji_strokes_number::KanjiStrokesNumber};
 
 
-pub struct KanjiCreatedEvent {
+pub struct KanjiDeletedEvent {
     pub id: String,
     pub ideogram: KanjiIdeogram,
     pub kunyomi_readings: Vec<KanjiKunyomiReading>,
@@ -17,7 +17,7 @@ pub struct KanjiCreatedEvent {
     pub occurred_on: String,
 }
 
-impl KanjiCreatedEvent {
+impl KanjiDeletedEvent {
     pub fn new(
         ideogram: KanjiIdeogram, 
         kunyomi_readings: Vec<KanjiKunyomiReading>, 
@@ -39,14 +39,14 @@ impl KanjiCreatedEvent {
         nanori_readings: Vec<KanjiNanoriReading>,
         meanings: Vec<KanjiMeaning>, 
         strokes: KanjiStrokesNumber, 
-        radicals: Vec<KanjiRadical>,
+        radicals: Vec<KanjiRadical>
     )  -> Arc<Self> {
         std::sync::Arc::new(Self::new(ideogram, kunyomi_readings, onyomi_readings, nanori_readings, meanings, strokes, radicals))
     }
 }
 
-impl DomainEvent for KanjiCreatedEvent {
+impl DomainEvent for KanjiDeletedEvent {
     fn event_type(&self) -> String {
-        "tanukanji.kernel.kanji.created@1.0.0".to_string()
+        "tanukanji.kernel.kanji.deleted@1.0.0".to_string()
     }
 }
