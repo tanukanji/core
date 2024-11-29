@@ -7,13 +7,11 @@ Tanukanji Core is the backend component for Tanukanji, focusing on storing Japan
 To install dependencies:
 
 ```bash
-bun install
+make deps
 ```
 
-To run:
+To run on development mode:
 
 ```bash
-bun run index.ts
+make run
 ```
-
-This project was created using `bun init` in bun v1.1.29. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
