@@ -2,18 +2,16 @@ use std::any::Any;
 
 use cqrs::domain::command::Command;
 
-use crate::kanjis::domain::entities::kanji_ideogram::KanjiIdeogram;
-
 
 pub struct DeleteKanjiCommand {
-    pub ideogram: KanjiIdeogram,
+    pub ideogram: String,
 }
 
 impl DeleteKanjiCommand {
 
     pub const COMMAND_TYPE: &'static str = "DeleteKanjiCommand";
 
-    pub fn new(ideogram: KanjiIdeogram) -> Self {
+    pub fn new(ideogram: String) -> Self {
         Self { ideogram }
     }
 }

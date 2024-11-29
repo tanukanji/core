@@ -2,26 +2,25 @@ use std::any::Any;
 
 use cqrs::domain::command::Command;
 
-use crate::kanjis::domain::entities::{kanji_ideogram::KanjiIdeogram, kanji_kunyomi_reading::KanjiKunyomiReading, kanji_meaning::KanjiMeaning, kanji_nanori_reading::KanjiNanoriReading, kanji_onyomi_reading::KanjiOnyomiReading, kanji_radical::KanjiRadical, kanji_strokes_number::KanjiStrokesNumber};
-
 
 pub struct UpdateKanjiCommand {
-    pub ideogram: KanjiIdeogram,
-    pub kunyomi_readings: Vec<KanjiKunyomiReading>,
-    pub onyomi_readings: Vec<KanjiOnyomiReading>,
-    pub nanori_readings: Vec<KanjiNanoriReading>,
-    pub meanings: Vec<KanjiMeaning>,
-    pub strokes: KanjiStrokesNumber,
-    pub radicals: Vec<KanjiRadical>,
+    pub ideogram: String,
+    pub kunyomi_readings: Vec<String>,
+    pub onyomi_readings: Vec<String>,
+    pub nanori_readings: Vec<String>,
+    pub meanings: Vec<String>,
+    pub meaning_languages: Vec<String>,
+    pub strokes: u8,
+    pub radicals: Vec<String>,
 }
 
 impl UpdateKanjiCommand {
 
     pub const COMMAND_TYPE: &'static str = "UpdateKanjiCommand";
 
-    pub fn new(ideogram: KanjiIdeogram, kunyomi_readings: Vec<KanjiKunyomiReading>, onyomi_readings: Vec<KanjiOnyomiReading>, 
-        nanori_readings: Vec<KanjiNanoriReading>, meanings: Vec<KanjiMeaning>, strokes: KanjiStrokesNumber, radicals: Vec<KanjiRadical>) -> Self {
-        Self { ideogram, kunyomi_readings, onyomi_readings, nanori_readings, meanings, strokes, radicals }
+    pub fn new(ideogram: String, kunyomi_readings: Vec<String>, onyomi_readings: Vec<String>, 
+        nanori_readings: Vec<String>, meanings: Vec<String>, meaning_languages: Vec<String>, strokes: u8, radicals: Vec<String>) -> Self {
+        Self { ideogram, kunyomi_readings, onyomi_readings, nanori_readings, meanings, meaning_languages, strokes, radicals }
     }
 }
 
